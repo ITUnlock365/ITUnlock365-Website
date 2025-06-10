@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home & Mobile IT Helper</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a sleek look and feel */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .app-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+            padding: 2.5rem; /* Increased padding */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .gradient-button {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6); /* Indigo to Purple gradient */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .gradient-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .faq-button {
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .faq-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        .faq-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-blue-50">
+
+    <div class="app-container">
+        <!-- Header -->
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 leading-tight">
+            Home & Mobile IT Helper
+        </h1>
+        <p class="text-center text-gray-600 mb-4">
+            Get clear, simple answers to your home internet and mobile device questions.
+        </p>
+
+        <!-- Question Input -->
+        <div class="relative">
+            <textarea id="questionInput"
+                      class="w-full p-4 pr-12 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg resize-y min-h-[100px]"
+                      placeholder="e.g., 'Why is my Wi-Fi slow?', 'How do I connect to Bluetooth?', 'What is a firewall?'"></textarea>
+            <button id="askButton"
+                    class="gradient-button absolute bottom-4 right-4 text-white font-semibold py-2 px-6 rounded-lg text-base flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.516 12.215 2 10.163 2 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7 4a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
+                </svg>
+                Ask
+            </button>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="hidden text-center text-indigo-600 font-semibold text-lg flex items-center justify-center gap-3">
+            <div class="loading-spinner"></div>
+            Thinking...
+        </div>
+
+        <!-- Answer Display -->
+        <div id="answerDisplay"
+             class="bg-blue-50 p-6 rounded-xl border border-blue-200 text-gray-700 text-lg leading-relaxed min-h-[150px] flex items-center justify-center text-center italic">
+            Your answer will appear here. Try asking a question above, or select one of the common questions below!
+        </div>
+
+        <!-- Common Questions / FAQ Section -->
+        <div class="mt-4">
+            <h2 class="text-xl font-semibold text-gray-700 mb-3 text-center">Common Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="Why is my Wi-Fi signal weak in some rooms?">
+                    Why is my Wi-Fi signal weak in some rooms?
+                </button>
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="How do I set up a guest Wi-Fi network?">
+                    How do I set up a guest Wi-Fi network?
+                </button>
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="What should I do if my phone battery drains too fast?">
+                    What should I do if my phone battery drains too fast?
+                </button>
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="How do I clear cache on my Android or iPhone?">
+                    How do I clear cache on my Android or iPhone?
+                </button>
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="What is a VPN and do I need one?">
+                    What is a VPN and do I need one?
+                </button>
+                <button class="faq-button w-full bg-indigo-50 text-indigo-700 py-3 px-4 rounded-lg font-medium text-left border border-indigo-200" data-question="My internet keeps disconnecting. What could be wrong?">
+                    My internet keeps disconnecting. What could be wrong?
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Get references to DOM elements
+        const questionInput = document.getElementById('questionInput');
+        const askButton = document.getElementById('askButton');
+        const answerDisplay = document.getElementById('answerDisplay');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const faqButtons = document.querySelectorAll('.faq-button');
+
+        // Function to call the Gemini API
+        async function getAnswerFromGemini(question) {
+            // Show loading indicator
+            loadingIndicator.classList.remove('hidden');
+            answerDisplay.textContent = ''; // Clear previous answer
+            answerDisplay.classList.add('italic', 'text-gray-500'); // Dim and italicize placeholder
+
+            try {
+                // Construct the prompt for the LLM
+                const prompt = `You are an expert, helpful, and concise IT assistant for residential users with limited technical knowledge.
+                                Provide a clear, simple, and direct answer to the following question.
+                                Avoid jargon and use analogies if helpful. Keep the answer to a maximum of 3-4 sentences.
+
+                                Question: "${question}"`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const payload = { contents: chatHistory };
+                // __app_id and __firebase_config are provided by the environment, apiKey is left empty as per instructions.
+                const apiKey = ""; // Canvas environment will provide this API key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                // Check for successful response and extract the text
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    answerDisplay.textContent = text; // Update the display div with the generated answer
+                    answerDisplay.classList.remove('italic', 'text-gray-500');
+                    answerDisplay.classList.add('text-gray-700'); // Restore text color
+                } else {
+                    answerDisplay.textContent = "Apologies, I couldn't find an answer. Please try rephrasing your question.";
+                    answerDisplay.classList.remove('italic', 'text-gray-500');
+                    answerDisplay.classList.add('text-red-600'); // Indicate error
+                    console.error("Gemini API response structure unexpected:", result);
+                }
+            } catch (error) {
+                answerDisplay.textContent = "An error occurred while fetching the answer. Please check your internet connection and try again.";
+                answerDisplay.classList.remove('italic', 'text-gray-500');
+                answerDisplay.classList.add('text-red-600'); // Indicate error
+                console.error("Error generating answer:", error);
+            } finally {
+                loadingIndicator.classList.add('hidden'); // Hide loading indicator
+            }
+        }
+
+        // Event listener for the "Ask" button
+        askButton.addEventListener('click', () => {
+            const question = questionInput.value.trim();
+            if (question) {
+                getAnswerFromGemini(question);
+            } else {
+                answerDisplay.textContent = "Please enter a question before asking!";
+                answerDisplay.classList.remove('italic', 'text-gray-500');
+                answerDisplay.classList.add('text-orange-600');
+            }
+        });
+
+        // Event listeners for common FAQ buttons
+        faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const question = button.dataset.question;
+                questionInput.value = question; // Populate the input field
+                getAnswerFromGemini(question); // Ask the question directly
+            });
+        });
+
+        // Optional: Allow pressing Enter in the textarea to submit
+        questionInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && !event.shiftKey) { // Shift+Enter for new line
+                event.preventDefault(); // Prevent default Enter behavior (new line)
+                askButton.click(); // Trigger the ask button click
+            }
+        });
+    </script>
+</body>
+</html>
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
